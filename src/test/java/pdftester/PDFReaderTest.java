@@ -22,7 +22,8 @@ public class PDFReaderTest {
     }
 
     /**
-     * Just a simple Read Test
+     * TEST 1
+     * Just a simple Read Test....just plain stackoverflow code
      * @throws IOException
      */
     @Test
@@ -36,9 +37,34 @@ public class PDFReaderTest {
         document.close();
     }
 
+
+    /**
+     * TEST2
+     *
+     * Code from Test1 now implemented as call in our Java Package.
+     * Just a test that our implementation works.
+     *
+     * @throws IOException
+     */
     @Test
     public void testeImplementartion() throws IOException {
         PDFReader reader = new PDFReader();
         Assert.assertNotNull(reader.readPDF(testFile));
+    }
+
+    /**
+     * TEST 3
+     *
+     * Command Pattern takes place. We now want to create
+     * some Command which can handle our PDF printed from Deutsche Bahn
+     *
+     * @throws IOException
+     */
+    @Test
+    public void testBahn() throws IOException {
+        PDFReader reader = new PDFReader();
+        String text = reader.readPDF(testFile);
+
+        System.out.println(text);
     }
 }
