@@ -4,5 +4,5 @@ public interface Command<T> {
 
     T result();
 
-    void process(String test);
+    Command process(String test);
 }

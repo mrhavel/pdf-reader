@@ -4,12 +4,22 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Just a simple PDF Reader
  */
 public class PDFReader {
+
+    private FileFilter onlyPDFFiles = new FileFilter() {
+        @Override
+        public boolean accept(File pathname) {
+            return pathname.getName().endsWith("pdf");
+        }
+    };
 
     /**
      * ReadPDF ... ready pdfs
@@ -26,5 +36,20 @@ public class PDFReader {
         }
         document.close();
         return text;
+    }
+
+    public List<BahnReise> readDirectory(File f) throws IOException {
+        if (!f.isDirectory())
+            return new LinkedList<>();
+
+        List<BahnReise> reisen = new LinkedList<>();
+
+        for (File pdf: f.listFiles(onlyPDFFiles)) {
+            reisen.add(
+                    (BahnReise) new BahnTicketCommand().process(readPDF(pdf)).result()
+            );
+        }
+
+        return reisen;
     }
 }

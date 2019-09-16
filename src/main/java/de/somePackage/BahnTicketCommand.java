@@ -30,15 +30,13 @@ public class BahnTicketCommand implements Command<BahnReise> {
      * @param text
      */
     @Override
-    public void process(String text) {
-
+    public Command process(String text) {
         reise = new BahnReise();
-
         String[] lines = text.split("\r?\n");
-
         reise.setTime(lines[0].split("\\s")[0]);
         reise.setBahncode(lines[4].split("\\s")[0]);
         reise.setPreis(lines[11].split("\\s")[1]);
-
+        reise.setReisender(lines[4].split("\\s")[2] + "" + lines[4].split("\\s")[3]);
+        return this;
     }
 }
