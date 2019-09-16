@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 public class PDFReaderTest {
 
@@ -77,4 +78,13 @@ public class PDFReaderTest {
 
     }
 
+    @Test
+    public void testMassenRead() throws IOException {
+        PDFReader reader = new PDFReader();
+        File pdfFiles = new File("C:\\Users\\mib\\Downloads\\bahn");
+
+        List<BahnReise> reisen = reader.readDirectory(pdfFiles);
+
+        Assert.assertTrue(!reisen.isEmpty());
+    }
 }

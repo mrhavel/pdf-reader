@@ -14,12 +14,7 @@ import java.util.List;
  */
 public class PDFReader {
 
-    private FileFilter onlyPDFFiles = new FileFilter() {
-        @Override
-        public boolean accept(File pathname) {
-            return pathname.getName().endsWith("pdf");
-        }
-    };
+    private FileFilter onlyPDFFiles = pathname -> pathname.getName().endsWith("pdf");
 
     /**
      * ReadPDF ... ready pdfs
@@ -38,6 +33,12 @@ public class PDFReader {
         return text;
     }
 
+    /**
+     * Alle Tickets einlesen
+     * @param f
+     * @return
+     * @throws IOException
+     */
     public List<BahnReise> readDirectory(File f) throws IOException {
         if (!f.isDirectory())
             return new LinkedList<>();
