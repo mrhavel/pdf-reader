@@ -1,5 +1,7 @@
 package pdftester;
 
+import de.somePackage.BahnReise;
+import de.somePackage.BahnTicketCommand;
 import de.somePackage.PDFReader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -65,6 +67,14 @@ public class PDFReaderTest {
         PDFReader reader = new PDFReader();
         String text = reader.readPDF(testFile);
 
-        System.out.println(text);
+        BahnTicketCommand cmd = new BahnTicketCommand();
+        cmd.process(text);
+        BahnReise reise = cmd.result();
+
+        Assert.assertNotNull(reise);
+        Assert.assertNotNull(reise.getBahncode());
+        Assert.assertNotNull(reise.getPreis());
+
     }
+
 }
