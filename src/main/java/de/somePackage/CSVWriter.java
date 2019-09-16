@@ -6,15 +6,18 @@ import java.util.List;
 /**
  *
  */
-public class CSVWriter implements Command<File, List<BahnReise>> {
+public class CSVWriter implements Command<List<BahnReise>, File> {
+
+    File csvOutFIle;
 
     @Override
-    public List<BahnReise> result() {
-        return null;
+    public File result() {
+        return csvOutFIle;
     }
 
     @Override
-    public Command process(File data) {
-        return null;
+    public Command process(List<BahnReise> data) {
+        csvOutFIle = new File("C:/temp/out.csv");
+        return this;
     }
 }
