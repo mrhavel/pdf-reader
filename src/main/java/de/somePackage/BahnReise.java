@@ -42,4 +42,3 @@ public class BahnReise {
         this.bahncode = bahncode;
     }
 }
-}
