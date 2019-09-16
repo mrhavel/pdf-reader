@@ -1,8 +1,8 @@
 package de.somePackage;
 
-public interface Command<T> {
+public interface Command<I,O> {
 
-    T result();
+    O result();
 
-    Command process(String test);
+    Command process(I data);
 }

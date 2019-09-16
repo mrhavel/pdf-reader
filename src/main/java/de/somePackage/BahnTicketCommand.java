@@ -3,7 +3,7 @@ package de.somePackage;
 /**
  * Parser
  */
-public class BahnTicketCommand implements Command<BahnReise> {
+public class BahnTicketCommand implements Command<String, BahnReise> {
 
     BahnReise reise;
 
