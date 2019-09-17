@@ -1,8 +1,10 @@
 package pdftester;
 
 import de.somePackage.BahnReise;
-import de.somePackage.BahnTicketCommand;
+import de.somePackage.commands.BahnTicketCommand;
 import de.somePackage.PDFReader;
+import de.somePackage.commands.CSVWriterCommand;
+import de.somePackage.commands.Command;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.junit.Assert;
@@ -86,5 +88,19 @@ public class PDFReaderTest {
         List<BahnReise> reisen = reader.readDirectory(pdfFiles);
 
         Assert.assertTrue(!reisen.isEmpty());
+    }
+
+
+    @Test
+    public void testeCSVWriter() throws IOException {
+        PDFReader reader = new PDFReader();
+        Command cmd = new CSVWriterCommand();
+
+        File pdfFiles = new File("C:\\Users\\mib\\Downloads\\bahn");
+
+        List<BahnReise> reisen = reader.readDirectory(pdfFiles);
+
+        File out = (File) cmd.process(reisen).result();
+        Assert.assertTrue(out.exists());
     }
 }

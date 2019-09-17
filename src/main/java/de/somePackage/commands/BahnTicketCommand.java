@@ -1,4 +1,6 @@
-package de.somePackage;
+package de.somePackage.commands;
+
+import de.somePackage.BahnReise;
 
 /**
  * Parser

@@ -1,4 +1,4 @@
-package de.somePackage;
+package de.somePackage.commands;
 
 public interface Command<I,O> {
 

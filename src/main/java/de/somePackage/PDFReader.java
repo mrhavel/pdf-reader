@@ -1,5 +1,6 @@
 package de.somePackage;
 
+import de.somePackage.commands.BahnTicketCommand;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
