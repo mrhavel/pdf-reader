@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class CSVWriterCommand implements Command<List<BahnReise>, File> {
 
-    File csvOutFIle;
+    private File csvOutFIle;
 
     @Override
     public File result() {
@@ -21,7 +21,10 @@ public class CSVWriterCommand implements Command<List<BahnReise>, File> {
     public Command process(List<BahnReise> data) {
         csvOutFIle = new File("C:/temp/out.csv");
         try {
-            csvOutFIle.createNewFile();
+            if (!csvOutFIle.createNewFile()) {
+                System.out.println("Not able to create " + csvOutFIle.getName());
+            }
+            ;
         } catch (IOException e) {
             e.printStackTrace();
         }

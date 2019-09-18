@@ -7,7 +7,7 @@ import de.somePackage.beans.BahnReise;
  */
 public class BahnTicketCommand implements Command<String, BahnReise> {
 
-    BahnReise reise;
+    private BahnReise reise;
 
     @Override
     public BahnReise result() {
