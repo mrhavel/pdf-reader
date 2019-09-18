@@ -1,4 +1,6 @@
-package de.somePackage;
+package de.somePackage.beans;
+
+import java.io.File;
 
 public class BahnReise {
 
@@ -9,6 +11,8 @@ public class BahnReise {
     private String reisender;
 
     private String preis;
+
+    private File originalPDF;
 
     public String getPreis() {
         return preis;
@@ -40,5 +44,13 @@ public class BahnReise {
 
     public void setBahncode(String bahncode) {
         this.bahncode = bahncode;
+    }
+
+    public File getOriginalPDF() {
+        return originalPDF;
+    }
+
+    public void setOriginalPDF(File originalPDF) {
+        this.originalPDF = originalPDF;
     }
 }

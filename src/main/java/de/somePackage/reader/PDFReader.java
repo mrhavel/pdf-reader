@@ -1,5 +1,6 @@
-package de.somePackage;
+package de.somePackage.reader;
 
+import de.somePackage.beans.BahnReise;
 import de.somePackage.commands.BahnTicketCommand;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -19,6 +20,7 @@ public class PDFReader {
 
     /**
      * ReadPDF ... ready pdfs
+     *
      * @param f - some PDF File
      * @return contents of the pdf file, null if encrypted
      * @throws IOException - somethings wrong with the file
@@ -36,6 +38,7 @@ public class PDFReader {
 
     /**
      * Alle Tickets einlesen
+     *
      * @param f
      * @return
      * @throws IOException
@@ -46,9 +49,11 @@ public class PDFReader {
 
         List<BahnReise> reisen = new LinkedList<>();
 
-        for (File pdf: f.listFiles(onlyPDFFiles)) {
+        for (File pdf : f.listFiles(onlyPDFFiles)) {
+            BahnReise reise = (BahnReise) new BahnTicketCommand().process(readPDF(pdf)).result();
+            reise.setOriginalPDF(f);
             reisen.add(
-                    (BahnReise) new BahnTicketCommand().process(readPDF(pdf)).result()
+                    reise
             );
         }
 

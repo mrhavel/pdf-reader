@@ -1,8 +1,8 @@
 package pdftester;
 
-import de.somePackage.BahnReise;
+import de.somePackage.beans.BahnReise;
 import de.somePackage.commands.BahnTicketCommand;
-import de.somePackage.PDFReader;
+import de.somePackage.reader.PDFReader;
 import de.somePackage.commands.CSVWriterCommand;
 import de.somePackage.commands.Command;
 import org.apache.pdfbox.pdmodel.PDDocument;

@@ -1,6 +1,6 @@
 package de.somePackage.commands;
 
-import de.somePackage.BahnReise;
+import de.somePackage.beans.BahnReise;
 
 /**
  * Parser
@@ -45,11 +45,7 @@ public class BahnTicketCommand implements Command<String, BahnReise> {
             } else if (lines.length == 11){
                 reise.setPreis(lines[10].split("\\s")[1]);
             }
-
-            System.out.println(lines.length);
-
             reise.setReisender(lines[4].split("\\s")[2] + "" + lines[4].split("\\s")[3]);
-
         } catch (Exception exp) {
             System.out.println("Fehler : " + exp.getMessage());
         }

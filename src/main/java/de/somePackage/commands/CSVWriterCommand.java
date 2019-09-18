@@ -1,6 +1,6 @@
 package de.somePackage.commands;
 
-import de.somePackage.BahnReise;
+import de.somePackage.beans.BahnReise;
 
 import java.io.*;
 import java.util.List;
