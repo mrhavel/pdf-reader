@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class ExcelWriterCommand implements Command<List<BahnReise>, File> {
+public class ExcelWriterCommand extends Command<List<BahnReise>, File> {
 
     private File file;
 
@@ -36,10 +36,15 @@ public class ExcelWriterCommand implements Command<List<BahnReise>, File> {
             int columnCount = 0;
 
             Cell cell = row.createCell(++columnCount);
-
             cell.setCellValue(reise.getTime());
+
+            cell = row.createCell(++columnCount);
             cell.setCellValue(reise.getBahncode());
+
+            cell = row.createCell(++columnCount);
             cell.setCellValue(reise.getReisender());
+
+            cell = row.createCell(++columnCount);
             cell.setCellValue(reise.getPreis());
         }
 

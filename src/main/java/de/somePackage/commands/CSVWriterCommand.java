@@ -8,28 +8,29 @@ import java.util.List;
 /**
  * Just write all Travel Beans into a csv-File.
  */
-public class CSVWriterCommand implements Command<List<BahnReise>, File> {
+public class CSVWriterCommand extends Command<List<BahnReise>, File> {
 
-    private File csvOutFIle;
+    private File csvOutFile;
 
     @Override
     public File result() {
-        return csvOutFIle;
+        return csvOutFile;
     }
 
     @Override
     public Command process(List<BahnReise> data) {
-        csvOutFIle = new File("C:/temp/out.csv");
+        csvOutFile = new File("C:/temp/out.csv");
         try {
-            if (!csvOutFIle.createNewFile()) {
-                System.out.println("Not able to create " + csvOutFIle.getName());
+            if (!csvOutFile.createNewFile()) {
+                System.out.println("Not able to create " + csvOutFile.getAbsolutePath());
+                return this;
             }
-            ;
         } catch (IOException e) {
             e.printStackTrace();
+            return this;
         }
 
-        try (Writer fileWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvOutFIle)))) {
+        try (Writer fileWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvOutFile)))) {
             data.forEach((c) -> {
                 try {
                     fileWrite.append(c.getTime()).append(",");

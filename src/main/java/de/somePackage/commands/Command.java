@@ -1,22 +1,30 @@
 package de.somePackage.commands;
 
+import java.util.Map;
+
 /**
  *
  * @param <I> - Input
  * @param <O> - Output
  */
-public interface Command<I,O> {
+public abstract class Command<I, O> {
+
+    protected Map<String, Object> config;
+
+    public void config(Map<String, Object> config) {
+        this.config = config;
+    }
 
     /**
      *
      * @return
      */
-    O result();
+    abstract O result();
 
     /**
      * Process to get a result
      * @param data
      * @return
      */
-    Command process(I data);
+    abstract Command process(I data);
 }
