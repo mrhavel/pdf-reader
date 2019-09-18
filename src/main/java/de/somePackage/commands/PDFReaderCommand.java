@@ -1,7 +1,6 @@
-package de.somePackage.reader;
+package de.somePackage.commands;
 
 import de.somePackage.beans.BahnReise;
-import de.somePackage.commands.BahnTicketCommand;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -14,9 +13,11 @@ import java.util.List;
 /**
  * Just a simple PDF Reader
  */
-public class PDFReader {
+public class PDFReaderCommand extends Command<File, String> {
 
     private FileFilter onlyPDFFiles = pathname -> pathname.getName().endsWith("pdf");
+
+    private String contents;
 
     /**
      * ReadPDF ... ready pdfs
@@ -25,7 +26,7 @@ public class PDFReader {
      * @return contents of the pdf file, null if encrypted
      * @throws IOException - somethings wrong with the file
      */
-    public String readPDF(File f) throws IOException {
+    private String readPDF(File f) throws IOException {
         PDDocument document = PDDocument.load(f);
         String text = null;
         if (!document.isEncrypted()) {
@@ -43,7 +44,7 @@ public class PDFReader {
      * @return
      * @throws IOException
      */
-    public List<BahnReise> readDirectory(File f) throws IOException {
+    private List<BahnReise> readDirectory(File f) throws IOException {
         if (!f.isDirectory())
             return new LinkedList<>();
 
@@ -58,5 +59,23 @@ public class PDFReader {
         }
 
         return reisen;
+    }
+
+    @Override
+    public String result() {
+        return contents;
+    }
+
+    @Override
+    public Command process(File data) {
+        if (data.isDirectory()) {
+            throw new NullPointerException("Nur Dateien werden eingelesen");
+        }
+        try {
+            contents = readPDF(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 }
