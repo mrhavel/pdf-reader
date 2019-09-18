@@ -13,14 +13,16 @@ import java.util.List;
  */
 public class ReisekostenReaderApplication {
 
-    public static int main(String [] args) throws IOException {
-        File pathToReisekosten = new File("");
+    public static void main(String [] args) throws IOException {
+        File pathToReisekosten = new File(args[0]);
+        if (!pathToReisekosten.exists()) {
+            System.err.println("Path to Reisekosten is missing.");
+            return;
+        }
 
         PDFReader reader = new PDFReader();
         List<BahnReise> readReisen = reader.readDirectory(pathToReisekosten);
         CSVWriterCommand cmd = new CSVWriterCommand();
         File out = (File) cmd.process(readReisen).result();
-
-        return 0;
     }
 }
