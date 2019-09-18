@@ -9,22 +9,26 @@ import java.util.Map;
  */
 public abstract class Command<I, O> {
 
-    protected Map<String, Object> config;
+    protected Map<String, Object> config = null;
 
-    public void config(Map<String, Object> config) {
-        this.config = config;
+    public Command config(Map<String, Object> config) {
+        if (this.config == null) {
+            // One Command, one secret Configuration, one Processing....
+            this.config = config;
+        }
+        return this;
     }
 
     /**
      *
      * @return
      */
-    abstract O result();
+    public abstract O result();
 
     /**
      * Process to get a result
      * @param data
      * @return
      */
-    abstract Command process(I data);
+    public abstract Command process(I data);
 }

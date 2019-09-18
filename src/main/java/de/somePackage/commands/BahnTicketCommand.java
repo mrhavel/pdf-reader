@@ -5,7 +5,7 @@ import de.somePackage.beans.BahnReise;
 /**
  * Parser
  */
-public class BahnTicketCommand implements Command<String, BahnReise> {
+public class BahnTicketCommand extends Command<String, BahnReise> {
 
     private BahnReise reise;
 
