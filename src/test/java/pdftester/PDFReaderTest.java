@@ -73,10 +73,13 @@ public class PDFReaderTest {
         BahnTicketCommand cmd = new BahnTicketCommand();
         cmd.process(text);
         BahnReise reise = cmd.result();
+        reise.setOriginalPDF(testFile);
+
 
         Assert.assertNotNull(reise);
         Assert.assertNotNull(reise.getBahncode());
         Assert.assertNotNull(reise.getPreis());
+        Assert.assertNotNull(reise.getOriginalPDF());
 
     }
 
