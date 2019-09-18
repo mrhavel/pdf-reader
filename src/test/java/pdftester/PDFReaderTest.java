@@ -2,9 +2,9 @@ package pdftester;
 
 import de.somePackage.beans.BahnReise;
 import de.somePackage.commands.BahnTicketCommand;
-import de.somePackage.reader.PDFReader;
 import de.somePackage.commands.CSVWriterCommand;
-import de.somePackage.commands.Command;
+import de.somePackage.commands.ExcelWriterCommand;
+import de.somePackage.reader.PDFReader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.junit.Assert;
@@ -52,7 +52,7 @@ public class PDFReaderTest {
      * @throws IOException
      */
     @Test
-    public void testeImplementartion() throws IOException {
+    public void testeImplementation() throws IOException {
         PDFReader reader = new PDFReader();
         Assert.assertNotNull(reader.readPDF(testFile));
     }
@@ -90,17 +90,33 @@ public class PDFReaderTest {
         Assert.assertTrue(!reisen.isEmpty());
     }
 
-
     @Test
-    public void testeCSVWriter() throws IOException {
+    public void testCSVWriter() throws IOException {
         PDFReader reader = new PDFReader();
-        Command cmd = new CSVWriterCommand();
-
         File pdfFiles = new File("C:\\Users\\mib\\Downloads\\bahn");
 
-        List<BahnReise> reisen = reader.readDirectory(pdfFiles);
 
-        File out = (File) cmd.process(reisen).result();
+        File out = (File) new CSVWriterCommand().process(
+                reader.readDirectory(pdfFiles)
+        ).result();
+
+        Assert.assertNotNull(out);
         Assert.assertTrue(out.exists());
+
+    }
+
+    @Test
+    public void testExcelWriter() throws IOException {
+        PDFReader reader = new PDFReader();
+        File pdfFiles = new File("C:\\Users\\mib\\Downloads\\bahn");
+
+
+        File out = (File) new ExcelWriterCommand().process(
+                reader.readDirectory(pdfFiles)
+        ).result();
+
+        Assert.assertNotNull(out);
+        Assert.assertTrue(out.exists());
+
     }
 }

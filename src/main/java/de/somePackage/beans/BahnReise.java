@@ -14,6 +14,8 @@ public class BahnReise {
 
     private File originalPDF;
 
+    private File finalPDF;
+
     public String getPreis() {
         return preis;
     }
@@ -52,5 +54,13 @@ public class BahnReise {
 
     public void setOriginalPDF(File originalPDF) {
         this.originalPDF = originalPDF;
+    }
+
+    public File getFinalPDF() {
+        return finalPDF;
+    }
+
+    public void setFinalPDF(File finalPDF) {
+        this.finalPDF = finalPDF;
     }
 }

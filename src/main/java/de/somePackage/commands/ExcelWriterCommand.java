@@ -14,15 +14,19 @@ import java.util.List;
 
 public class ExcelWriterCommand implements Command<List<BahnReise>, File> {
 
+    private File file;
+
     @Override
     public File result() {
-        return null;
+        return file;
     }
 
     @Override
     public Command process(List<BahnReise> data) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Reisekosten");
+
+        file = new File("c:/temp/out.xlsx");
 
         int rowCount = 0;
 
@@ -40,7 +44,7 @@ public class ExcelWriterCommand implements Command<List<BahnReise>, File> {
         }
 
 
-        try (FileOutputStream outputStream = new FileOutputStream("JavaBooks.xlsx")) {
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
             workbook.write(outputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

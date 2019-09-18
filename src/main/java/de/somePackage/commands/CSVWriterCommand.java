@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.List;
 
 /**
- * Just write all Travel Beans into a File.
+ * Just write all Travel Beans into a csv-File.
  */
 public class CSVWriterCommand implements Command<List<BahnReise>, File> {
 
@@ -27,7 +27,7 @@ public class CSVWriterCommand implements Command<List<BahnReise>, File> {
         }
 
         try (Writer fileWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvOutFIle)))) {
-            data.forEach((c) ->{
+            data.forEach((c) -> {
                 try {
                     fileWrite.append(c.getTime()).append(",");
                     fileWrite.append(c.getBahncode()).append(",");
