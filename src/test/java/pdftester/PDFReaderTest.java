@@ -127,7 +127,7 @@ public class PDFReaderTest {
 
     @Test
     public void testExcelWriter() throws IOException {
-        File pdfFiles = new File("C:\\Users\\mib\\Downloads\\bahn");
+        File pdfFiles = new File("C:\\Users\\Brewer\\IdeaProjects\\pdf-reader\\src\\test\\resources");
 
         List<BahnReise> reisen = new ArrayList<>();
 

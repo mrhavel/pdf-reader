@@ -9,13 +9,13 @@ public class CommandFactory {
 
     public Command createExcelFileCommand(File outfile) {
         Map<String, Object> config = new HashMap<>();
-        config.put("outFile", outfile);
+        config.put("outFile", new File("C:/Temp/out.xls"));
         return new ExcelWriterCommand().config(config);
     }
 
     public Command createCSVFileCommand(File outfile) {
         Map<String, Object> config = new HashMap<>();
-        config.put("outFile", outfile);
+        config.put("outFile", "C:/Temp/out.csv");
         return new CSVWriterCommand().config(config);
     }
 
